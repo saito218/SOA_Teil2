@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RueckmeldungService" targetNamespace="http://fahrtabruf/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://fahrtabruf/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://fahrtabruf/" schemaLocation="rueckmeldung_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getFahrtlisteMitDatumResponse">
+    <wsdl:part name="parameters" element="tns:getFahrtlisteMitDatumResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFahrtlisteMitDatum">
+    <wsdl:part name="parameters" element="tns:getFahrtlisteMitDatum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RueckmeldungSEI">
+    <wsdl:operation name="getFahrtlisteMitDatum">
+      <wsdl:input name="getFahrtlisteMitDatum" message="tns:getFahrtlisteMitDatum">
+    </wsdl:input>
+      <wsdl:output name="getFahrtlisteMitDatumResponse" message="tns:getFahrtlisteMitDatumResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RueckmeldungServiceSoapBinding" type="tns:RueckmeldungSEI">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getFahrtlisteMitDatum">
+      <soap:operation soapAction="urn:GetFahrtlisteMitDatum" style="document"/>
+      <wsdl:input name="getFahrtlisteMitDatum">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getFahrtlisteMitDatumResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RueckmeldungService">
+    <wsdl:port name="RueckmeldungPort" binding="tns:RueckmeldungServiceSoapBinding">
+      <soap:address location="http://localhost:8080/TaxiWebService/services/RueckmeldungPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

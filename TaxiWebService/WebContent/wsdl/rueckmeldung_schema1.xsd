@@ -1,0 +1,29 @@
+<xs:schema xmlns:tns="http://fahrtabruf/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://fahrtabruf/" version="1.0">
+
+  <xs:element name="getFahrtlisteMitDatum" type="tns:getFahrtlisteMitDatum"/>
+
+  <xs:element name="getFahrtlisteMitDatumResponse" type="tns:getFahrtlisteMitDatumResponse"/>
+
+  <xs:complexType name="getFahrtlisteMitDatum">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getFahrtlisteMitDatumResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:taxi"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="taxi">
+    <xs:sequence>
+      <xs:element name="cusId" type="xs:int"/>
+      <xs:element name="datum" type="xs:int"/>
+      <xs:element name="gefahreneKm" type="xs:int"/>
+      <xs:element minOccurs="0" name="nachOrt" type="xs:string"/>
+      <xs:element minOccurs="0" name="vonOrt" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
